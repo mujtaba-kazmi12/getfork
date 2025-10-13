@@ -501,7 +501,7 @@ export default function SignUpPage() {
 
             {/* Terms and Privacy */}
             <div className="mt-8 text-xs text-gray-500 text-center">
-              By continuing, you agree to Expertise's{' '}
+              By continuing, you agree to Expertise&apos;s{' '}
               <Link href="/terms" className="underline hover:text-gray-700">
                 Terms of Service
               </Link>{' '}

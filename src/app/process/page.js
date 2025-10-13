@@ -240,7 +240,7 @@ export default function ProcessPage() {
                 {/* Title Section */}
                 <div className="space-y-4">
                   <h1 className="text-3xl font-bold text-gray-900">
-                    Let's Find Your Menu & Website
+                    Let&apos;s Find Your Menu & Website
                   </h1>
                   
                   <div className="space-y-3">
@@ -248,7 +248,7 @@ export default function ProcessPage() {
                       Help Us Get to Know You
                     </h2>
                     <p className="text-gray-600 leading-relaxed">
-                      We'll use your links to personalise customer answers and fetch your menu. Add your website and any ordering platforms like Uber Eats or DoorDash.
+                      We&apos;ll use your links to personalise customer answers and fetch your menu. Add your website and any ordering platforms like Uber Eats or DoorDash.
                     </p>
                   </div>
                 </div>
@@ -471,9 +471,11 @@ export default function ProcessPage() {
               {isFetching ? (
                 <div className="relative h-full min-h-[700px]">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <img 
+                    <Image 
                       src="/animationLogo.png" 
                       alt="Loading..." 
+                      width={64}
+                      height={64}
                       className="w-16 h-16 animate-pulse"
                     />
                   </div>

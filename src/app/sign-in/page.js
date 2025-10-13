@@ -350,7 +350,7 @@ export default function SignInPage() {
 
             {/* Sign Up Link */}
             <div className="mt-6 text-center">
-              <span className="text-gray-600">Don't have an account? </span>
+              <span className="text-gray-600">Don&apos;t have an account? </span>
               <Link href="/sign-up" className="text-gray-900 font-medium hover:underline">
                 Sign up
               </Link>
@@ -358,7 +358,7 @@ export default function SignInPage() {
 
             {/* Terms and Privacy */}
             <div className="mt-8 text-xs text-gray-500 text-center">
-              By continuing, you agree to Expertise's{' '}
+              By continuing, you agree to Expertise&apos;s{' '}
               <Link href="/terms" className="underline hover:text-gray-700">
                 Terms of Service
               </Link>{' '}
@@ -495,7 +495,7 @@ export default function SignInPage() {
               {/* Success Message */}
               <h3 className="text-lg font-medium text-gray-900 mb-3">Email sent successfully!</h3>
               <p className="text-gray-600 text-sm">
-                Check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.
+                Check your email for a link to reset your password. If it doesn&apos;t appear within a few minutes, check your spam folder.
               </p>
             </div>
 
