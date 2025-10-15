@@ -243,8 +243,8 @@ export default function SignInPage() {
                        placeholder="Email address"
                        className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
                          errors.email 
-                           ? 'border-red-500 focus:ring-red-500' 
-                           : 'border-gray-300 focus:ring-orange-500'
+                           ? 'border-red-500 focus:ring-red-500 text-gray-900' 
+                           : 'border-gray-300 focus:ring-orange-500 text-gray-900'
                        }`}
                      />
                    </div>
@@ -300,8 +300,8 @@ export default function SignInPage() {
                          placeholder="Password"
                          className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
                            errors.password 
-                             ? 'border-red-500 focus:ring-red-500' 
-                             : 'border-gray-300 focus:ring-orange-500'
+                             ? 'border-red-500 focus:ring-red-500 text-gray-900' 
+                             : 'border-gray-300 focus:ring-orange-500 text-gray-900'
                          }`}
                        />
                        <button

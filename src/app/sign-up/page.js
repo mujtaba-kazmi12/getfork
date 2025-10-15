@@ -291,8 +291,8 @@ export default function SignUpPage() {
                       showPasswordStep 
                         ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
                         : errors.firstName 
-                          ? 'border-red-500 focus:ring-red-500' 
-                          : 'border-gray-300 focus:ring-orange-500'
+                          ? 'border-red-500 focus:ring-red-500 text-gray-900' 
+                          : 'border-gray-300 focus:ring-orange-500 text-gray-900'
                     }`}
                   />
                 </div>
@@ -313,8 +313,8 @@ export default function SignUpPage() {
                       showPasswordStep 
                         ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
                         : errors.lastName 
-                          ? 'border-red-500 focus:ring-red-500' 
-                          : 'border-gray-300 focus:ring-orange-500'
+                          ? 'border-red-500 focus:ring-red-500 text-gray-900' 
+                          : 'border-gray-300 focus:ring-orange-500 text-gray-900'
                     }`}
                   />
                 </div>
@@ -343,8 +343,8 @@ export default function SignUpPage() {
                     showPasswordStep 
                       ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
                       : errors.email 
-                        ? 'border-red-500 focus:ring-red-500' 
-                        : 'border-gray-300 focus:ring-orange-500'
+                        ? 'border-red-500 focus:ring-red-500 text-gray-900' 
+                        : 'border-gray-300 focus:ring-orange-500 text-gray-900'
                   }`}
                 />
               </div>
@@ -372,8 +372,8 @@ export default function SignUpPage() {
                     showPasswordStep 
                       ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
                       : errors.phone 
-                        ? 'border-red-500 focus:ring-red-500' 
-                        : 'border-gray-300 focus:ring-orange-500'
+                        ? 'border-red-500 focus:ring-red-500 text-gray-900' 
+                        : 'border-gray-300 focus:ring-orange-500 text-gray-900'
                   }`}
                 />
               </div>
@@ -396,7 +396,7 @@ export default function SignUpPage() {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="Password"
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-gray-900"
                 />
                 <button
                   type="button"
