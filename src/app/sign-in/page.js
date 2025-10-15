@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function SignInPage() {
   const router = useRouter();
@@ -156,16 +157,19 @@ export default function SignInPage() {
   return (
     <div className="min-h-screen bg-white flex">
       {/* Left Section - Sign In Form */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 lg:flex-1 flex flex-col">
         {/* Sign In Form Content */}
-        <div className="flex-1 flex items-center justify-center px-8">
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-8">
           <div className="w-full max-w-md">
             {/* Logo */}
-            <div className="flex items-center space-x-2 mb-8">
-              <div className="w-8 h-8 bg-orange-500 rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-sm">🍴</span>
-              </div>
-              <span className="text-xl font-semibold text-gray-900">Getfork.ai</span>
+            <div className="flex items-center mb-8">
+              <Image 
+                src="/GetforkLogo.svg" 
+                alt="Getfork.ai" 
+                width={120}
+                height={32}
+                className="h-8"
+              />
             </div>
 
             {/* Title */}
@@ -371,8 +375,8 @@ export default function SignInPage() {
         </div>
       </div>
 
-      {/* Right Section - Simple Input Widget */}
-      <div className="flex-1 bg-gray-50 flex items-center justify-center p-8">
+      {/* Right Section - Simple Input Widget - Hidden on mobile */}
+      <div className="hidden lg:flex flex-1 bg-gray-50 items-center justify-center p-8">
         <div className="w-full max-w-md">
           {/* Simple Input Widget */}
           <div className="bg-white border-2 border-orange-500 px-6 py-4 rounded-full shadow-lg flex items-center space-x-3 cursor-pointer hover:shadow-orange-200 hover:shadow-xl transition-all duration-300 focus-within:ring-4 focus-within:ring-orange-200 focus-within:border-orange-600">

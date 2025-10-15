@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import Toast from '../../components/Toast';
 import { useToast } from '../../hooks/useToast';
 
@@ -194,16 +195,19 @@ export default function SignUpPage() {
   return (
     <div className="min-h-screen bg-white flex">
       {/* Left Section - Sign Up Form */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 lg:flex-1 flex flex-col">
         {/* Sign Up Form Content */}
-        <div className="flex-1 flex items-center justify-center px-8">
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-8">
           <div className="w-full max-w-md">
           {/* Logo */}
-          <div className="flex items-center space-x-2 mb-8">
-            <div className="w-8 h-8 bg-orange-500 rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-sm">🍴</span>
-            </div>
-            <span className="text-xl font-semibold text-gray-900">Getfork.ai</span>
+          <div className="flex items-center mb-8">
+            <Image 
+              src="/GetforkLogo.svg" 
+              alt="Getfork.ai" 
+              width={180}
+              height={42}
+              className="h-8"
+            />
           </div>
 
           {/* Title */}
@@ -269,47 +273,51 @@ export default function SignUpPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name Fields Row */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg className={`h-5 w-5 ${showPasswordStep ? 'text-gray-300' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
+              <div>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg className={`h-5 w-5 ${showPasswordStep ? 'text-gray-300' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    placeholder="First name"
+                    disabled={showPasswordStep}
+                    className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                      showPasswordStep 
+                        ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
+                        : errors.firstName 
+                          ? 'border-red-500 focus:ring-red-500' 
+                          : 'border-gray-300 focus:ring-orange-500'
+                    }`}
+                  />
                 </div>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleInputChange}
-                  placeholder="First name"
-                  disabled={showPasswordStep}
-                  className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                    showPasswordStep 
-                      ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
-                      : errors.firstName 
-                        ? 'border-red-500 focus:ring-red-500' 
-                        : 'border-gray-300 focus:ring-orange-500'
-                  }`}
-                />
                 {errors.firstName && (
                   <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
                 )}
               </div>
               <div>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                  placeholder="Last name"
-                  disabled={showPasswordStep}
-                  className={`w-full px-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                    showPasswordStep 
-                      ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
-                      : errors.lastName 
-                        ? 'border-red-500 focus:ring-red-500' 
-                        : 'border-gray-300 focus:ring-orange-500'
-                  }`}
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    placeholder="Last name"
+                    disabled={showPasswordStep}
+                    className={`w-full px-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                      showPasswordStep 
+                        ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
+                        : errors.lastName 
+                          ? 'border-red-500 focus:ring-red-500' 
+                          : 'border-gray-300 focus:ring-orange-500'
+                    }`}
+                  />
+                </div>
                 {errors.lastName && (
                   <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
                 )}
@@ -317,54 +325,58 @@ export default function SignUpPage() {
             </div>
 
             {/* Email Field */}
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className={`h-5 w-5 ${showPasswordStep ? 'text-gray-300' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+            <div>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg className={`h-5 w-5 ${showPasswordStep ? 'text-gray-300' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email address"
+                  disabled={showPasswordStep}
+                  className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                    showPasswordStep 
+                      ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
+                      : errors.email 
+                        ? 'border-red-500 focus:ring-red-500' 
+                        : 'border-gray-300 focus:ring-orange-500'
+                  }`}
+                />
               </div>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Email address"
-                disabled={showPasswordStep}
-                className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                  showPasswordStep 
-                    ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
-                    : errors.email 
-                      ? 'border-red-500 focus:ring-red-500' 
-                      : 'border-gray-300 focus:ring-orange-500'
-                }`}
-              />
               {errors.email && (
                 <p className="mt-1 text-sm text-red-500">{errors.email}</p>
               )}
             </div>
 
             {/* Phone Field */}
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className={`h-5 w-5 ${showPasswordStep ? 'text-gray-300' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+            <div>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg className={`h-5 w-5 ${showPasswordStep ? 'text-gray-300' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Phone number"
+                  disabled={showPasswordStep}
+                  className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                    showPasswordStep 
+                      ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
+                      : errors.phone 
+                        ? 'border-red-500 focus:ring-red-500' 
+                        : 'border-gray-300 focus:ring-orange-500'
+                  }`}
+                />
               </div>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder="Phone number"
-                disabled={showPasswordStep}
-                className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                  showPasswordStep 
-                    ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
-                    : errors.phone 
-                      ? 'border-red-500 focus:ring-red-500' 
-                      : 'border-gray-300 focus:ring-orange-500'
-                }`}
-              />
               {errors.phone && (
                 <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
               )}
@@ -494,14 +506,14 @@ export default function SignUpPage() {
           {/* Login Link */}
           <div className="mt-6 text-center">
             <span className="text-gray-600">Already have an account? </span>
-            <Link href="/signin" className="text-gray-900 font-medium hover:underline">
+            <Link href="/sign-in" className="text-gray-900 font-medium hover:underline">
               Log in
             </Link>
           </div>
 
             {/* Terms and Privacy */}
             <div className="mt-8 text-xs text-gray-500 text-center">
-              By continuing, you agree to Expertise&apos;s{' '}
+              By continuing, you agree to GetFork&apos;s{' '}
               <Link href="/terms" className="underline hover:text-gray-700">
                 Terms of Service
               </Link>{' '}
@@ -514,8 +526,8 @@ export default function SignUpPage() {
         </div>
       </div>
 
-      {/* Right Section - Simple Input Widget */}
-      <div className="flex-1 bg-gray-50 flex items-center justify-center p-8">
+      {/* Right Section - Simple Input Widget - Hidden on mobile */}
+      <div className="hidden lg:flex flex-1 bg-gray-50 items-center justify-center p-8">
         <div className="w-full max-w-md">
           {/* Simple Input Widget */}
           <div className="bg-white border-2 border-orange-500 px-6 py-4 rounded-full shadow-lg flex items-center space-x-3 cursor-pointer hover:shadow-orange-200 hover:shadow-xl transition-all duration-300 focus-within:ring-4 focus-within:ring-orange-200 focus-within:border-orange-600">
