@@ -220,7 +220,7 @@ export default function SignUpPage() {
             <>
               <button
                 onClick={handleGoogleSignUp}
-                className="w-full flex items-center justify-center space-x-3 py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors mb-6"
+                className="w-full h-10 flex items-center justify-center space-x-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors mb-6"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
@@ -287,12 +287,12 @@ export default function SignUpPage() {
                     onChange={handleInputChange}
                     placeholder="First name"
                     disabled={showPasswordStep}
-                    className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                    className={`w-full h-10 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
                       showPasswordStep 
                         ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
                         : errors.firstName 
                           ? 'border-red-500 focus:ring-red-500 text-gray-900' 
-                          : 'border-gray-300 focus:ring-orange-500 text-gray-900'
+                          : 'border-gray-300 focus:ring-black focus:border-black text-gray-900'
                     }`}
                   />
                 </div>
@@ -309,12 +309,12 @@ export default function SignUpPage() {
                     onChange={handleInputChange}
                     placeholder="Last name"
                     disabled={showPasswordStep}
-                    className={`w-full px-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                    className={`w-full h-10 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
                       showPasswordStep 
                         ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
                         : errors.lastName 
                           ? 'border-red-500 focus:ring-red-500 text-gray-900' 
-                          : 'border-gray-300 focus:ring-orange-500 text-gray-900'
+                          : 'border-gray-300 focus:ring-black focus:border-black text-gray-900'
                     }`}
                   />
                 </div>
@@ -339,12 +339,12 @@ export default function SignUpPage() {
                   onChange={handleInputChange}
                   placeholder="Email address"
                   disabled={showPasswordStep}
-                  className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                  className={`w-full h-10 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
                     showPasswordStep 
                       ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
                       : errors.email 
                         ? 'border-red-500 focus:ring-red-500 text-gray-900' 
-                        : 'border-gray-300 focus:ring-orange-500 text-gray-900'
+                        : 'border-gray-300 focus:ring-black focus:border-black text-gray-900'
                   }`}
                 />
               </div>
@@ -368,12 +368,12 @@ export default function SignUpPage() {
                   onChange={handleInputChange}
                   placeholder="Phone number"
                   disabled={showPasswordStep}
-                  className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                  className={`w-full h-10 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
                     showPasswordStep 
                       ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed placeholder-gray-400'
                       : errors.phone 
                         ? 'border-red-500 focus:ring-red-500 text-gray-900' 
-                        : 'border-gray-300 focus:ring-orange-500 text-gray-900'
+                        : 'border-gray-300 focus:ring-black focus:border-black text-gray-900'
                   }`}
                 />
               </div>
@@ -396,7 +396,7 @@ export default function SignUpPage() {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="Password"
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-gray-900"
+                  className="w-full h-10 pl-10 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-black text-gray-900"
                 />
                 <button
                   type="button"
@@ -486,7 +486,7 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-3 px-4 rounded-lg font-medium transition-colors mt-6 flex items-center justify-center bg-gray-900 text-white ${
+              className={`w-full h-10 px-4 rounded-lg font-medium transition-colors mt-6 flex items-center justify-center bg-gray-900 text-white ${
                 isLoading 
                   ? 'cursor-not-allowed' 
                   : 'hover:bg-gray-800'

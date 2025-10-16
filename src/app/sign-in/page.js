@@ -166,8 +166,8 @@ export default function SignInPage() {
               <Image 
                 src="/GetforkLogo.svg" 
                 alt="Getfork.ai" 
-                width={120}
-                height={32}
+                width={180}
+                height={42}
                 className="h-8"
               />
             </div>
@@ -182,7 +182,7 @@ export default function SignInPage() {
               <>
                 <button
                   onClick={handleGoogleSignIn}
-                  className="w-full flex items-center justify-center space-x-3 py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors mb-6"
+                  className="w-full h-10 flex items-center justify-center space-x-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors mb-6"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24">
                     <path
@@ -236,17 +236,17 @@ export default function SignInPage() {
                        </svg>
                      </div>
                      <input
-                       type="email"
-                       name="email"
-                       value={formData.email}
-                       onChange={handleInputChange}
-                       placeholder="Email address"
-                       className={`w-full pl-10 pr-3 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                         errors.email 
-                           ? 'border-red-500 focus:ring-red-500 text-gray-900' 
-                           : 'border-gray-300 focus:ring-orange-500 text-gray-900'
-                       }`}
-                     />
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email address"
+                    className={`w-full h-10 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                      errors.email 
+                        ? 'border-red-500 focus:ring-red-500 text-gray-900' 
+                        : 'border-gray-300 focus:ring-black focus:border-black text-gray-900'
+                    }`}
+                  />
                    </div>
                    {errors.email && (
                      <p className="mt-1 text-sm text-red-500">{errors.email}</p>
@@ -268,7 +268,7 @@ export default function SignInPage() {
                          name="email"
                          value={formData.email}
                          disabled
-                         className="w-full pl-10 pr-3 py-3 border rounded-lg bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed"
+                         className="w-full h-10 pl-10 pr-3 border rounded-lg bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed"
                        />
                      </div>
                    </div>
@@ -293,17 +293,17 @@ export default function SignInPage() {
                          </svg>
                        </div>
                        <input
-                         type={showPassword ? "text" : "password"}
-                         name="password"
-                         value={formData.password}
-                         onChange={handleInputChange}
-                         placeholder="Password"
-                         className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
-                           errors.password 
-                             ? 'border-red-500 focus:ring-red-500 text-gray-900' 
-                             : 'border-gray-300 focus:ring-orange-500 text-gray-900'
-                         }`}
-                       />
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    placeholder="Password"
+                    className={`w-full h-10 pl-10 pr-12 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent ${
+                      errors.password 
+                        ? 'border-red-500 focus:ring-red-500 text-gray-900' 
+                        : 'border-gray-300 focus:ring-black focus:border-black text-gray-900'
+                    }`}
+                  />
                        <button
                          type="button"
                          onClick={() => setShowPassword(!showPassword)}
@@ -332,7 +332,7 @@ export default function SignInPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full py-3 px-4 rounded-lg font-medium transition-colors mt-6 flex items-center justify-center ${
+                className={`w-full h-10 px-4 rounded-lg font-medium transition-colors mt-6 flex items-center justify-center ${
                   isLoading 
                     ? 'bg-gray-400 cursor-not-allowed' 
                     : 'bg-gray-900 text-white hover:bg-gray-800'
@@ -440,7 +440,7 @@ export default function SignInPage() {
                 value={resetEmail}
                 onChange={(e) => setResetEmail(e.target.value)}
                 placeholder="Email"
-                className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-gray-900 placeholder-gray-400"
+                className="w-full h-10 px-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-black text-gray-900 placeholder-gray-400"
                 onKeyPress={(e) => {
                   if (e.key === 'Enter' && resetEmail.trim()) {
                     handleResetPassword();
@@ -454,7 +454,7 @@ export default function SignInPage() {
             <button
               onClick={handleResetPassword}
               disabled={!resetEmail.trim()}
-              className={`w-full py-3 rounded-lg font-medium transition-colors ${
+              className={`w-full h-10 rounded-lg font-medium transition-colors ${
                 resetEmail.trim()
                   ? 'bg-gray-900 text-white hover:bg-gray-800'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -506,7 +506,7 @@ export default function SignInPage() {
             {/* Close Button */}
             <button
               onClick={() => setShowSuccessModal(false)}
-              className="w-full bg-gray-900 text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors"
+              className="w-full bg-gray-900 text-white h-10 rounded-lg font-medium hover:bg-gray-800 transition-colors"
             >
               Close
             </button>

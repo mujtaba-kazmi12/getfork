@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Sidebar from "../../components/Sidebar";
 import Topbar from "../../components/Topbar";
 
@@ -128,9 +129,11 @@ export default function RewardsPage() {
                         <td className="py-4 px-4">
                            <div className="flex items-center gap-3">
                              <div className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
-                               <img 
+                               <Image 
                                  src="/api/placeholder/40/40" 
                                  alt="Coupon image"
+                                 width={40}
+                                 height={40}
                                  className="w-full h-full object-cover rounded-lg"
                                  onError={(e) => {
                                    e.target.style.display = 'none';
@@ -285,9 +288,11 @@ export default function RewardsPage() {
                         <td className="py-4 px-4">
                            <div className="flex items-center gap-3">
                              <div className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
-                               <img 
+                               <Image 
                                  src="/api/placeholder/40/40" 
                                  alt="Reward image"
+                                 width={40}
+                                 height={40}
                                  className="w-full h-full object-cover rounded-lg"
                                  onError={(e) => {
                                    e.target.style.display = 'none';
@@ -449,7 +454,7 @@ export default function RewardsPage() {
                     <div className="flex-1">
                       {/* Description */}
                       <p className="text-sm text-gray-600 mb-6">
-                        Choose whether you'd like to notify your customers by email or SMS to ensure they don't miss important updates.
+                        Choose whether you&apos;d like to notify your customers by email or SMS to ensure they don&apos;t miss important updates.
                       </p>
 
                       {/* Notification Options */}
