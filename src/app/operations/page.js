@@ -498,7 +498,7 @@ export default function OperationsPage() {
         },
         body: JSON.stringify({
           url: urlInput.trim(),
-          api_key: process.env.SCRAPING_API_KEY
+          api_key: process.env.NEXT_PUBLIC_SCRAPING_API_KEY
         })
       });
 
