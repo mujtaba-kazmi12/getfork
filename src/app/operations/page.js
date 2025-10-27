@@ -498,7 +498,7 @@ export default function OperationsPage() {
         },
         body: JSON.stringify({
           url: urlInput.trim(),
-          api_key: process.env.NEXT_PUBLIC_SCRAPING_API_KEY || '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'
+          api_key: process.env.NEXT_PUBLIC_SCRAPING_API_KEY
         })
       });
 
