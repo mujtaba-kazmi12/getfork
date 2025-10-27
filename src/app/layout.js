@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
+import { BrandProvider } from "../contexts/BrandContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
-        {children}
+        <BrandProvider>
+          {children}
+        </BrandProvider>
       </body>
     </html>
   );

@@ -30,6 +30,62 @@ const brandSchema = new mongoose.Schema(
       type: Object,
       required: true,
     },
+    restaurantLogo: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    restaurantBanner: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    websiteUrl: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    address: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    contactNumber: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    restaurantTiming: {
+      type: [
+        {
+          day: {
+            type: String,
+            trim: true,
+            default: '',
+          },
+          status: {
+            type: String,
+            trim: true,
+            default: '',
+          },
+          openTime: {
+            type: String,
+            trim: true,
+            default: '',
+          },
+          closeTime: {
+            type: String,
+            trim: true,
+            default: '',
+          },
+        },
+      ],
+      default: [],
+    },
+    emailAddresses: {
+      type: [String],
+      default: [],
+    },
   },
   {
     timestamps: true,

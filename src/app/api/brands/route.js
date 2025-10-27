@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import { extractTokenFromHeader, verifyToken, createErrorResponse, createSuccessResponse } from '@/lib/auth';
 import Brand from '@/models/Brand';
+import { createDefaultFAQs } from '@/lib/defaultFAQs';
+import FAQ from '@/models/FAQ';
 
 // POST /api/brands
 // Creates or updates a brand for the authenticated user (upsert by userId+brandId)
@@ -33,6 +35,13 @@ export async function POST(request) {
       brand_fetch,
       restaurantName: restaurantNameInput,
       style,
+      restaurantLogo,
+      restaurantBanner,
+      websiteUrl,
+      address,
+      contactNumber,
+      restaurantTiming,
+      emailAddresses,
     } = body || {};
 
     if (!brand_fetch || typeof brand_fetch !== 'object') {
@@ -47,13 +56,46 @@ export async function POST(request) {
     const restaurantName = (restaurantNameInput || brand_fetch?.name || '').toString().trim();
     const primaryColor = (style?.primaryColor || '').toString().trim();
 
-    // Prepare document fields
+    // Prepare document fields with new optional fields
     const updateDoc = {
       restaurantName,
       style: { primaryColor },
       brand_fetch,
     };
 
+    // Add optional fields only if they are provided
+    if (restaurantLogo !== undefined) {
+      updateDoc.restaurantLogo = (restaurantLogo || '').toString().trim();
+    }
+    if (restaurantBanner !== undefined) {
+      updateDoc.restaurantBanner = (restaurantBanner || '').toString().trim();
+    }
+    if (websiteUrl !== undefined) {
+      updateDoc.websiteUrl = (websiteUrl || '').toString().trim();
+    }
+    if (address !== undefined) {
+      updateDoc.address = (address || '').toString().trim();
+    }
+    if (contactNumber !== undefined) {
+      updateDoc.contactNumber = (contactNumber || '').toString().trim();
+    }
+    if (restaurantTiming !== undefined && Array.isArray(restaurantTiming)) {
+      updateDoc.restaurantTiming = restaurantTiming.map(timing => ({
+        day: (timing?.day || '').toString().trim(),
+        status: (timing?.status || '').toString().trim(),
+        openTime: (timing?.openTime || '').toString().trim(),
+        closeTime: (timing?.closeTime || '').toString().trim(),
+      }));
+    }
+    if (emailAddresses !== undefined && Array.isArray(emailAddresses)) {
+      updateDoc.emailAddresses = emailAddresses.map(email => 
+        (typeof email === 'string' ? email : email?.email || '').toString().trim()
+      ).filter(email => email !== '');
+    }
+
+    // Let's check if this is a new brand by seeing if it existed before
+    const brandBefore = await Brand.findOne({ userId, brandId });
+    
     // Upsert brand per userId + brandId
     const brand = await Brand.findOneAndUpdate(
       { userId, brandId },
@@ -61,6 +103,25 @@ export async function POST(request) {
       { upsert: true, new: true }
     );
 
+    const isNew = !brandBefore;
+    
+    console.log('Brand processing:', {
+      brandId,
+      userId,
+      isNew,
+      brandBefore: !!brandBefore,
+      brandAfter: brand
+    });
+
+    // Always create default FAQs for brands (regardless of whether new or existing)
+    try {
+      console.log('Creating default FAQs for brand:', { brandId, userId, isNew });
+      await createDefaultFAQs(userId, brandId);
+      console.log('Successfully created default FAQs for brand:', brandId);
+    } catch (error) {
+      console.error('Error creating default FAQs for brand:', error);
+    }
+    
     return NextResponse.json(
       createSuccessResponse('Brand saved successfully', { brand }),
       { status: 200 }

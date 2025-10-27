@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useBrand } from '../contexts/BrandContext';
 
 function SectionLabel({ children }) {
   return (
@@ -38,6 +40,20 @@ function NavItem({ href, label, iconSrc, active }) {
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { selectedBrand, setSelectedBrand, brands, loading } = useBrand();
+
+  const handleBrandChange = (event) => {
+    const brandId = event.target.value;
+    const brand = brands.find(b => b._id === brandId);
+    if (brand) {
+      // Add restaurantName if not present
+      const brandWithName = {
+        ...brand,
+        restaurantName: brand.brand_fetch?.name || brand.restaurantName || 'Unknown Restaurant'
+      };
+      setSelectedBrand(brandWithName);
+    }
+  };
 
   const isActive = (href) => pathname === href;
 
@@ -75,12 +91,52 @@ export default function Sidebar() {
 
       {/* Restaurant Selector */}
       <div className="px-4">
-        <div className="flex items-center gap-2 w-full border rounded-lg px-3 py-2 text-sm">
-          <Image src="/animationLogo.png" alt="Restaurant" width={20} height={20} className="rounded" />
-          <select className="flex-1 bg-transparent outline-none">
-            <option>illcaminetto M...</option>
-          </select>
-        </div>
+        {loading ? (
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <span className="text-sm text-gray-500">Loading brands...</span>
+          </div>
+        ) : brands.length > 0 ? (
+          <div className="relative">
+            <select 
+              className="w-full bg-white border border-gray-200 rounded-lg p-3 pl-10 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+              value={selectedBrand?._id || ''}
+              onChange={handleBrandChange}
+            >
+              {brands.map((brand) => (
+                <option key={brand._id} value={brand._id} className="bg-white text-gray-900">
+                  {brand.restaurantName}
+                </option>
+              ))}
+            </select>
+            
+            {/* Logo inside dropdown */}
+            {selectedBrand && selectedBrand.brand_fetch?.logos?.[0]?.formats?.[0]?.src && (
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                <Image 
+                  src={selectedBrand.brand_fetch.logos[0].formats[0].src} 
+                  alt={selectedBrand.restaurantName}
+                  width={16}
+                  height={16}
+                  className="object-contain"
+                  referrerPolicy="no-referrer"
+                  onLoad={() => console.log('Logo loaded successfully in sidebar')}
+                  onError={() => console.log('Logo failed to load in sidebar')}
+                />
+              </div>
+            )}
+            
+            {/* Dropdown arrow */}
+            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <span className="text-sm text-gray-500">No brands available</span>
+          </div>
+        )}
       </div>
 
       {/* Sections */}
